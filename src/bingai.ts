@@ -250,15 +250,15 @@ export namespace BingAI {
         let data = reply.text || reply.hiddenText || "No response."
 
         // replace superscripts
-        data = data.replace('[^1^]', '¹')
-          .replace('[^2^]', '²')
-          .replace('[^3^]', '³')
-          .replace('[^4^]', '⁴')
-          .replace('[^5^]', '⁵')
-          .replace('[^6^]', '⁶')
-          .replace('[^7^]', '⁷')
-          .replace('[^8^]', '⁸')
-          .replace('[^9^]', '⁹')
+        data = data.replaceAll('[^1^]', '¹')
+          .replaceAll('[^2^]', '²')
+          .replaceAll('[^3^]', '³')
+          .replaceAll('[^4^]', '⁴')
+          .replaceAll('[^5^]', '⁵')
+          .replaceAll('[^6^]', '⁶')
+          .replaceAll('[^7^]', '⁷')
+          .replaceAll('[^8^]', '⁸')
+          .replaceAll('[^9^]', '⁹')
 
         if (reply.sourceAttributions && reply.sourceAttributions.length > 0) {
             data += "\n\nSources:"

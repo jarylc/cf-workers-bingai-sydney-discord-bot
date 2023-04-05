@@ -102,7 +102,8 @@ export default {
 									session.currentIndex = response.item.throttling.numUserMessagesInConversation
 									await Cloudflare.putKV(env.BINGAI_SYDNEY_DISCORD_BOT_KV, chatID, session.expiry, session)
 									const percent = response.item.throttling.numUserMessagesInConversation / response.item.throttling.maxNumUserMessagesInConversation
-									content += `${percent < 0.9 ? CIRCLES.GREEN : CIRCLES.AMBER} ${response.item.throttling.numUserMessagesInConversation} of ${response.item.throttling.maxNumUserMessagesInConversation} quota used for this conversation (\`/clear\` to start anew).`
+									content += `${percent < 0.9 ? CIRCLES.GREEN : CIRCLES.AMBER} ${response.item.throttling.numUserMessagesInConversation} of ${response.item.throttling.maxNumUserMessagesInConversation} quota used for this conversation (\`/clear\` to reset).`
+									content += `\n⌛ This conversation will automatically expire in ${Math.round((session.expiry - Math.round(Date.now() / 1000)) / 60)} minutes.`
 								} else {
 									await Cloudflare.deleteKV(env.BINGAI_SYDNEY_DISCORD_BOT_KV, chatID)
 									content += `️${CIRCLES.RED} This conversation has reached limits, forcing a new conversation.`
