@@ -1,4 +1,4 @@
-# cf-workers-chatgpt-discord-bot
+# cf-workers-bingai-sydney-discord-bot
 ![Logo](cf-workers-bingai-sydney-discord-bot.png)
 
 ## Description
