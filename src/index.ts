@@ -101,13 +101,13 @@ export default {
 									if (!session.expiry)
 										session.expiry = Math.round(Date.now() / 1000) + 18000 // conversations expire after 6h (or 21600 seconds, delete at 5 hours or 18000 seconds to be safer)
 									session.currentIndex = response.item.throttling.numUserMessagesInConversation
-									await Cloudflare.putKV(env.BINGAI_SYDNEY_DISCORD_BOT_KV, chatID, session.expiry, session)
+									await Cloudflare.putKV(env.BINGAI_SYDNEY_DISCORD_BOT_KV, chatID, session, session.expiry)
 									const percent = response.item.throttling.numUserMessagesInConversation / response.item.throttling.maxNumUserMessagesInConversation
-									content += `${percent < 0.9 ? CIRCLES.GREEN : CIRCLES.AMBER} ${response.item.throttling.numUserMessagesInConversation} of ${response.item.throttling.maxNumUserMessagesInConversation} quota used for this conversation (\`/clear\` to reset).`
-									content += `\n⌛ This conversation will automatically expire in ${Math.round((session.expiry - Math.round(Date.now() / 1000)) / 60)} minutes.`
+									content += `${percent < 0.9 ? CIRCLES.GREEN : CIRCLES.AMBER} ${response.item.throttling.numUserMessagesInConversation} of ${response.item.throttling.maxNumUserMessagesInConversation} messages left before my head needs clearing.`
+									content += `\n⌛ I will forget about this conversation in ${Math.round((session.expiry - Math.round(Date.now() / 1000)) / 60)} minutes as well.`
 								} else {
 									await Cloudflare.deleteKV(env.BINGAI_SYDNEY_DISCORD_BOT_KV, chatID)
-									content += `️${CIRCLES.RED} This conversation has reached limits, forcing a new conversation.`
+									content += `️${CIRCLES.RED} I have reached my memory limit of ${response.item.throttling.maxNumUserMessagesInConversation} messages. Going ahead to clear my head now!`
 								}
 							} else {
 								content = response
@@ -138,8 +138,7 @@ export default {
 					return Discord.generateResponse({
 						type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 						data: {
-							content: "Context for the current chat (if it existed) has been cleared, starting a new conversation.",
-							flags: InteractionResponseFlags.EPHEMERAL
+							content: "Thanks for wiping my memory, I'm ready to start a new conversation!"
 						}
 					})
 				}
