@@ -31,8 +31,9 @@ Note: This is mainly for personal use, if you would like to add features, do for
 9. Add space-delimited user IDs to whitelist in `DISCORD_USERID_WHITELIST` in wrangler.toml
 10. (Optional) To enable context, run `npx wrangler kv:namespace create session` and replace the ID of `BINGAI_SYDNEY_DISCORD_BOT_KV` wrangler.toml, else remove `kv_namespaces` block entirely from wrangler.toml
 11. (Optional) Choose your `BING_CONVERSATION_STYLE` by commenting and uncommenting accordingly in wrangler.toml
-12. Run `npx wrangler publish` to deploy to Cloudflare Workers
-13. Set the `Interactions Endpoint URL` of your Discord application to the URL of the deployed worker
+12. (Optional) Update `BING_BEHAVIOR` in wrangler.toml with your desired behavior / system message
+13. Run `npx wrangler publish` to deploy to Cloudflare Workers
+14. Set the `Interactions Endpoint URL` of your Discord application to the URL of the deployed worker
 
 ### (On cookie expiry) Renewing BING_COOKIE
 1. Sign in to https://www.bing.com/ on the browser

@@ -12,6 +12,7 @@ export interface Env {
 	DISCORD_USERID_WHITELIST: string
 	BING_COOKIE: string
 	BING_CONVERSATION_STYLE: string
+	BING_BEHAVIOR: string
 }
 
 enum CIRCLES {
@@ -92,7 +93,7 @@ export default {
 						let content: string
 						const session = await Cloudflare.getKV(env.BINGAI_SYDNEY_DISCORD_BOT_KV, chatID) || await BingAI.createConversation(env.BING_COOKIE)
 						if (typeof session !== "string") {
-							let response = await BingAI.complete(session, env.BING_CONVERSATION_STYLE, query)
+							let response = await BingAI.complete(session, env.BING_CONVERSATION_STYLE, env.BING_BEHAVIOR, query)
 							if (typeof response !== "string") {
 								content = BingAI.extractBody(response)
 								content += "\n\n"
