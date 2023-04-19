@@ -27,7 +27,7 @@ Note: This is mainly for personal use, if you would like to add features, do for
 5. Run `npx wrangler secret put DISCORD_APPLICATION_ID` and set the Discord app's ID
 6. Run `npx wrangler secret put DISCORD_PUBLIC_KEY` and set the Discord app's public key
 7. Run `npx wrangler secret put DISCORD_TOKEN` and set the Discord bot's token
-8. Run `npx wrangler secret put BING_COOKIE` and set the OpenAI API key
+8. Run `npx wrangler secret put BING_COOKIE` and set your latest Bing cookie request header on https://edgeservices.bing.com/edgesvc/turing/conversation/create
 9. Add space-delimited user IDs to whitelist in `DISCORD_USERID_WHITELIST` in wrangler.toml
 10. (Optional) To enable context, run `npx wrangler kv:namespace create session` and replace the ID of `BINGAI_SYDNEY_DISCORD_BOT_KV` wrangler.toml, else remove `kv_namespaces` block entirely from wrangler.toml
 11. (Optional) Choose your `BING_CONVERSATION_STYLE` by commenting and uncommenting accordingly in wrangler.toml
@@ -35,6 +35,6 @@ Note: This is mainly for personal use, if you would like to add features, do for
 13. Run `npx wrangler publish` to deploy to Cloudflare Workers
 14. Set the `Interactions Endpoint URL` of your Discord application to the URL of the deployed worker
 
-### (On cookie expiry) Renewing BING_COOKIE
+### (On cookie expiry, roughly 2 weeks) Renewing BING_COOKIE
 1. Sign in to https://www.bing.com/ on the browser
 2. Run `npx wrangler secret put BING_COOKIE` and set your latest Bing cookie request header on https://edgeservices.bing.com/edgesvc/turing/conversation/create
