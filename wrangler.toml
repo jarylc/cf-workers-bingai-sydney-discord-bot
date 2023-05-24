@@ -1,7 +1,11 @@
 name = "cf-workers-bingai-sydney-discord-bot"
 main = "src/index.ts"
 compatibility_date = "2023-03-02"
+compatibility_flags = ["web_socket_compression"]
 workers_dev = true
+
+[placement]
+mode = "smart"
 
 kv_namespaces = [
     { binding = "BINGAI_SYDNEY_DISCORD_BOT_KV", id = "e9c1cd16078e44449741f5e47e95bb3e" }
