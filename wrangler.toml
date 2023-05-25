@@ -4,12 +4,12 @@ compatibility_date = "2023-03-02"
 compatibility_flags = ["web_socket_compression"]
 workers_dev = true
 
-[placement]
-mode = "smart"
-
 kv_namespaces = [
     { binding = "BINGAI_SYDNEY_DISCORD_BOT_KV", id = "e9c1cd16078e44449741f5e47e95bb3e" }
 ]
+
+[placement]
+mode = "smart"
 
 [vars]
 DISCORD_USERID_WHITELIST = "115383559790919689 149263431638188032 360096828609396737 150581926489620481" # jaryl jazz jonsee sakthi,
